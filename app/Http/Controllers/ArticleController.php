@@ -93,7 +93,7 @@ class ArticleController extends Controller implements HasMiddleware
     }
 
     public function byCategory(Category $category){
-        $articles = $category->articles()->orderBy('id','desc')->get();
+        $articles = $category->articles()->where('is_accepted', true)->orderBy('id','desc')->get();
         return view('article.by-category', compact('category','articles'));
     }
 

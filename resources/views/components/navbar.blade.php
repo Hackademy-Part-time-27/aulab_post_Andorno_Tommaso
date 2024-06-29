@@ -9,7 +9,18 @@
           <li class="nav-item">
             <a class="nav-link activate" aria-current="page" href="{{route('article.index')}}">Tutti gli articoli</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{route('careers')}}">Lavora con noi</a>
+          </li>
           @auth
+          @if (Auth::user()->is_admin)
+              <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard Admin</a></li>
+          </li>
+          @endif
+          @if (Auth::user()->is_revisor)
+              <li><a class="dropdown-item" href="{{route('revisor.dashboard')}}">Dashboard del revisore</a></li>
+          </li>
+          @endif
           <li class="nav-item">
               <a class="nav-link" href="{{route('article.create')}}">Inserisci un articolo</a>
           </li>
@@ -25,7 +36,7 @@
                 </form>
               </li>
             </ul>
-          </li>
+            
           @endauth 
           @guest
           <li class="nav-item dropdown">

@@ -9,9 +9,10 @@
           <li class="nav-item">
             <a class="nav-link activate" aria-current="page" href="{{route('article.index')}}">Tutti gli articoli</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{route('careers')}}">Lavora con noi</a>
-          </li>
+          <form action="{{route('article.search')}}" method="GET" class="d-flex" role="search">
+            <input class="form-control me-2" type="search" name="query" placeholder="Cerca tra gli articoli..." aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit">Cerca</button>
+          </form>
           @auth
           @if (Auth::user()->is_admin)
               <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard Admin</a></li>
@@ -36,7 +37,6 @@
                 </form>
               </li>
             </ul>
-            
           @endauth 
           @guest
           <li class="nav-item dropdown">
@@ -48,7 +48,10 @@
               <li><a class="dropdown-item" href="{{ route('login') }}">Accedi</a></li>
             </ul>
           </li>
-          @endguest       
+          @endguest
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{route('careers')}}">Lavora con noi</a>
+          </li>     
         </ul>
       </div>
     </div>
